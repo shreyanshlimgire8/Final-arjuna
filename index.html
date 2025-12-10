@@ -1,0 +1,1729 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!doctype html>
+<html lang="en">
+<head>
+<style>
+.dark body, .dark {
+  color: #f5f7ff !important;
+}
+.dark .meta, .dark .text, .dark p, .dark div {
+  color: #e6ecff !important;
+}
+.dark .block, .dark .planner-item {
+  background-color: #0f1a2a !important;
+  border-color: #1f2c45 !important;
+}
+
+/* Assistant fix: high-contrast small text in dark mode */
+html[data-theme="dark"] .small,
+html[data-theme="dark"] .meta,
+html[data-theme="dark"] .guide-sub,
+html[data-theme="dark"] .tile p,
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] .mit-text input::placeholder {
+  color: rgba(220,238,255,0.95) !important;
+  opacity: 1 !important;
+}
+</style>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Arjuna JEE Mentor -- Built by Shrey</title>
+<meta name="theme-color" content="#0b3d91"/>
+<style>
+/* original styles preserved */
+
+:root{
+  --bg:#f4f8ff; --card:#fff; --accent:#0b3d91; --accent2:#183ea8;
+  --gold:#f6c84c; --muted:#4e618a; --radius:12px;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,Roboto,'Segoe UI',sans-serif;background:var(--bg);-webkit-font-smoothing:antialiased}
+.app{max-width:980px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
+header{display:flex;align-items:center;gap:12px;padding:12px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;position:sticky;top:0;z-index:30}
+.logo{width:48px;height:48px;border-radius:10px;background:var(--gold);display:flex;align-items:center;justify-content:center;color:#08224a;font-weight:900;font-size:22px}
+.title{font-weight:900;font-size:16px}
+.header-right{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{padding:9px 12px;border-radius:10px;border:none;cursor:pointer;font-weight:800;touch-action:manipulation}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.14);color:#fff}
+main{padding:12px;flex:1;overflow:auto}
+
+/* home grid */
+.home-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.tile{background:linear-gradient(180deg,#fff,#fbfdff);border-radius:12px;padding:16px;box-shadow:0 8px 20px rgba(11,61,145,0.06);cursor:pointer;border:1px solid #eaf4ff;display:flex;flex-direction:column;gap:8px}
+.tile h3{margin:0;font-size:1.05rem;color:var(--accent2)}
+.tile p{margin:0;color:var(--muted);font-size:0.92rem}
+
+/* layout */
+.layout{display:grid;grid-template-columns:1fr 360px;gap:12px}
+@media(max-width:880px){ .layout{grid-template-columns:1fr} .home-grid{grid-template-columns:1fr} }
+
+/* panels */
+.panel{background:var(--card);border-radius:12px;padding:12px;box-shadow:0 8px 20px rgba(11,61,145,0.04);border:1px solid #e9f2ff}
+.small{font-size:0.86rem;color:var(--muted)}
+
+/* guide */
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.chip{padding:8px 12px;border-radius:999px;background:#f3f7ff;border:1px solid #dceaff;color:var(--accent);font-weight:800;cursor:pointer}
+.chip.active{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0;max-height:110px;overflow:auto}
+.pill{padding:8px 12px;border-radius:999px;background:#fbfdff;border:1px solid #eaf3ff;cursor:pointer;font-weight:700}
+.pill.active{background:linear-gradient(90deg,#4facfe,#00e0ff);color:#042046;box-shadow:0 8px 20px rgba(0,127,255,0.12)}
+.guide-title{font-weight:900;color:var(--accent);font-size:1.05rem}
+.guide-sub{color:var(--muted);margin-bottom:8px}
+.guide-section{margin-top:12px}
+.guide-section h4{margin:0 0 6px;font-weight:800;color:var(--accent2)}
+.guide-section ul{margin:0 0 8px 18px;color:#123058;line-height:1.6}
+
+/* planner */
+.planner-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.planner-row input, .planner-row select{padding:8px;border-radius:8px;border:1px solid #d7e5ff}
+.block{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:10px;border:1px solid #e7f0ff;background:#fbfdff;margin-bottom:8px}
+.block .meta{color:var(--muted);font-size:0.86rem}
+.progress{width:100%;height:8px;background:#eef6ff;border-radius:999px;overflow:hidden}
+.progress > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),#ffd36b)}
+
+/* MITs 3 columns */
+.mits-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.mit-card{padding:12px;border-radius:12px;background:#fff;border:1px solid #eef6ff;display:flex;flex-direction:column;gap:8px;align-items:center}
+.mit-card .mit-text{font-weight:800;color:var(--accent2);min-height:36px}
+.mit-card .mit-btn{padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;border:none;font-weight:900;cursor:pointer;width:100%}
+.mit-card .mit-btn.done{background:linear-gradient(90deg,#2ecc71,#28b463)}
+
+/* onboarding modal */
+.modal{
+  position:fixed;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(8,18,40,0.45);z-index:9999
+}
+.modal-card{width:92%;max-width:520px;background:#fff;border-radius:14px;padding:18px;box-shadow:0 30px 80px rgba(8,18,40,0.3)}
+
+/* footer */
+.footer{padding:12px;text-align:center;color:var(--muted);font-size:0.88rem}
+.hidden{display:none}
+.row{display:flex;gap:8px;align-items:center}
+</style>
+
+<!-- Polished styles injected by assistant: Inter font, improved spacing, glass cards, better headings -->
+<style>
+:root{
+  --accent:#0b3d91; --accent2:#183ea8; --gold:#f5d142; --muted:#4e618a;
+  --card-bg: rgba(255,255,255,0.88);
+  --glass: rgba(255,255,255,0.06);
+}
+body, html { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; line-height:1.45; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+h1,h2,h3,h4 { font-weight:700; color:var(--accent2); margin:0 0 8px; letter-spacing:0.2px; }
+.small { color:var(--muted); }
+.panel { background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(251,253,255,0.96)); border-radius:14px; padding:14px; box-shadow: 0 8px 28px rgba(11,61,145,0.06); border: 1px solid rgba(11,61,145,0.04); }
+.tile, .mit-card, .block { border-radius:12px; }
+.guide-section { margin-top:14px; }
+.guide-section h4 { font-size:1rem; margin-bottom:6px; color:var(--accent); }
+.guide-section ul { margin:0 0 8px 18px; color:#123058; line-height:1.75; }
+.guide-section li { margin-bottom:6px; }
+.pill { padding:10px 14px; font-weight:700; }
+.pill.active { box-shadow:0 10px 30px rgba(11,61,145,0.08); transform: translateY(-2px); }
+.btn { transition: all .12s ease-in-out; }
+.btn:active { transform: translateY(1px) scale(.997); }
+.mit-card .mit-text input { font-weight:600; }
+.block .meta { color:var(--muted); font-size:0.9rem; }
+.footer { font-size:0.86rem; color:var(--muted); }
+.chips .chip { font-weight:800; padding:8px 10px; }
+.progress { height:10px; border-radius:999px; background:linear-gradient(90deg,#eef6ff,#f8fbff); }
+.progress > i { background:linear-gradient(90deg,var(--gold),#ffd36b); height:100%; display:block; width:0; border-radius:999px; }
+
+/* glass cards for guide content */
+.guide-card { background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.6)); border-radius:12px; padding:12px; border:1px solid rgba(11,61,145,0.04); box-shadow: 0 8px 30px rgba(11,61,145,0.04); margin-bottom:10px; }
+/* responsive */
+@media (max-width:880px){ .panel{ padding:12px; } .guide-section ul { font-size:0.95rem; } }
+</style>
+
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="logo">अ</div>
+      <div>
+        <div class="title">Arjuna JEE Mentor</div>
+        <div class="small" id="headerSmall">Guide · Focus · Planner</div>
+      </div>
+      <div class="header-right">
+        <button id="todayFocusBtn" class="btn btn-primary">Today's Focus</button>
+        <button id="menuBtn" class="btn btn-ghost">Menu</button>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- Onboarding modal for first-time name -->
+      <div id="onboardModal" class="modal hidden" role="dialog" aria-modal="true">
+        <div class="modal-card">
+          <h2 style="margin:0 0 8px">Welcome to Arjuna</h2>
+          <div class="small" style="margin-bottom:12px">Enter your name so Arjuna can call you every time.</div>
+          <input id="onboardName" placeholder="Your name" style="width:100%;padding:10px;border-radius:8px;border:1px solid #e6eefc"/>
+          <div style="display:flex;gap:8px;margin-top:12px">
+            <button id="onboardSave" class="btn btn-primary" style="flex:1">Start</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOME -->
+      <div id="home" class="panel">
+        <h2 id="welcomeTitle" style="margin:0 0 8px">Welcome -- choose a section</h2>
+        <div class="home-grid">
+          <div class="tile" data-screen="guide"><h3>🧭 Guide</h3><p>Detailed chapter plans with Advanced topics & IIT traps.</p></div>
+          <div class="tile" data-screen="planner"><h3>📅 Planner</h3><p>Set MITs, add time blocks, track progress.</p></div>
+          <div class="tile" data-screen="reset"><h3>🛡️ Arjuna Reset</h3><p>10-min focused mode with specific micro-tasks.</p></div>
+          <div class="tile" data-screen="weekly"><h3>📈 Weekly</h3><p>7-day summary & streaks to keep consistency.</p></div>
+          <div class="tile" data-screen="settings"><h3>⚙️ Settings</h3><p>Save data & Night mode only.</p></div>
+        </div>
+        <div class="small" style="margin-top:12px">Tip: Start with Planner → set MITs → do Arjuna Reset for a focused win.</div>
+      </div>
+
+      <!-- GUIDE -->
+      <div id="guideScreen" class="panel hidden">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div class="guide-title" id="guideTitle">Guide</div>
+            <div class="guide-sub" id="guideSubtitle">Pick subject → choose a chapter</div>
+          </div>
+          <div class="row"><button id="guideBack" class="btn btn-ghost">Back</button></div>
+        </div>
+
+        <div style="margin-top:12px">
+          <div class="chips" id="subjectChips">
+            <div class="chip active" data-subject="physics">Physics</div>
+            <div class="chip" data-subject="maths">Maths</div>
+            <div class="chip" data-subject="chemistry">Chemistry</div>
+          </div>
+
+          <div class="pills" id="chapterPills"></div>
+
+          <div id="guideContent"></div>
+        </div>
+      </div>
+
+      <!-- PLANNER -->
+      <div id="plannerScreen" class="panel hidden">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="font-weight:900;color:var(--accent2)">Planner -- Today's plan</div>
+          <div class="small" id="plannerDate"></div>
+        </div>
+
+        <div style="margin-top:10px">
+          <div style="font-weight:800">Set MITs (Top 3)</div>
+          <div class="mits-row" id="mitsRow">
+            <div class="mit-card">
+              <div class="mit-text"><input id="mit1text" placeholder="MIT 1 (example: Fluids DPP 1-10)" style="border:none;outline:none;width:100%"/></div>
+              <button id="mit1btn" class="mit-btn">I did it</button>
+            </div>
+            <div class="mit-card">
+              <div class="mit-text"><input id="mit2text" placeholder="MIT 2 (example: 5 integrals)" style="border:none;outline:none;width:100%"/></div>
+              <button id="mit2btn" class="mit-btn">I did it</button>
+            </div>
+            <div class="mit-card">
+              <div class="mit-text"><input id="mit3text" placeholder="MIT 3 (example: 1 mock segment)" style="border:none;outline:none;width:100%"/></div>
+              <button id="mit3btn" class="mit-btn">I did it</button>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button id="saveMits" class="btn btn-primary">Save MITs</button>
+            <button id="clearMits" class="btn btn-ghost">Clear MITs</button>
+          </div>
+          <div id="mitWinMsg" class="small" style="margin-top:8px;display:none;color:var(--gold);font-weight:900">Arjuna won today 🔥</div>
+
+          <hr style="margin:12px 0;border:none;border-top:1px solid #eef6ff"/>
+
+          <div style="font-weight:900">Add time blocks</div>
+          <div class="planner-row" style="margin-top:8px">
+            <input id="bstart" type="time" style="width:110px"/>
+            <input id="bend" type="time" style="width:110px"/>
+            <input id="btask" placeholder="Task (eg: Fluids DPP 1–10)" style="flex:1"/>
+            <select id="benergy" style="width:110px"><option value="high">High</option><option value="med">Med</option><option value="low">Low</option></select>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button id="addBlock" class="btn btn-primary">Add Block</button>
+            <button id="clearBlocks" class="btn btn-ghost">Clear All</button>
+            <button id="exportDay" class="btn btn-ghost">Export Day</button>
+          </div>
+
+          <div id="blocksList" style="margin-top:10px;max-height:260px;overflow:auto"></div>
+          <div id="plannerSummary" class="small" style="margin-top:8px">Planned: 0 • Done: 0</div>
+        </div>
+      </div>
+
+      <!-- RESET -->
+      <div id="resetScreen" class="panel hidden">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="font-weight:900;color:var(--accent2)">Arjuna Reset -- 10 minute focus</div>
+          <div class="small"><button id="resetBack" class="btn btn-ghost">Back</button></div>
+        </div>
+
+        <div style="margin-top:10px">
+          <input id="resetChapter" placeholder="Chapter or MIT reference (optional)" style="width:100%;padding:8px;border-radius:8px;border:1px solid #e6f3ff"/>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button id="startReset" class="btn btn-primary">Start 10-min</button>
+            <button id="stopReset" class="btn btn-ghost">Cancel</button>
+          </div>
+
+          <div id="timerCard" style="display:none;margin-top:10px">
+            <div class="timer" style="align-items:center">
+              <div id="timerDisplay" class="timer-display" style="font-size:2rem;font-weight:900;color:var(--accent2)">10:00</div>
+              <div id="timerPhase" class="small">Phase 1: Breathe</div>
+              <div class="progress" style="width:100%;margin-top:8px"><i id="progressBar"></i></div>
+              <div style="display:flex;gap:8px;margin-top:8px">
+                <button id="winReset" class="btn btn-primary" style="flex:1">Completed</button>
+                <button id="skipReset" class="btn btn-ghost" style="flex:1">Skip</button>
+              </div>
+              <div id="resetTasks" style="margin-top:10px" class="small"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WEEKLY -->
+      <div id="weeklyScreen" class="panel hidden">
+        <div style="font-weight:900;color:var(--accent2)">Weekly Summary (last 7 days)</div>
+        <div id="weeklySummary" class="small" style="margin-top:8px">No data yet.</div>
+      </div>
+
+      <!-- SETTINGS -->
+      <div id="settingsScreen" class="panel hidden">
+        <div style="font-weight:900;color:var(--accent2)">Settings</div>
+        <div style="margin-top:8px">
+          <label><input type="checkbox" id="useLS" checked/> Save data (localStorage)</label>
+          <div style="margin-top:8px"><label><input type="checkbox" id="nightMode"/> Night mode</label></div>
+          <div class="small" style="margin-top:8px">Footer is fixed: Built by Shrey</div>
+        </div>
+      </div>
+
+    </main>
+
+    <div class="footer" id="footer">Built by Shrey</div>
+  </div>
+
+<script>
+/* ============================
+   Safe local storage wrapper
+   ============================ */
+const SafeStore = (function(){
+  let mem = {};
+  function lsOK(){ try{ localStorage.setItem('__t','t'); localStorage.removeItem('__t'); return true;}catch(e){return false;} }
+  const ok = lsOK();
+  return {
+    get(k,d=null){ try{ if(document.getElementById('useLS') && !document.getElementById('useLS').checked) return mem[k] ?? d; if(ok){ const v=localStorage.getItem(k); return v?JSON.parse(v):(mem[k] ?? d);} return mem[k] ?? d; } catch(e){ return mem[k] ?? d; } },
+    set(k,v){ try{ if(document.getElementById('useLS') && !document.getElementById('useLS').checked){ mem[k]=v; return;} if(ok) localStorage.setItem(k,JSON.stringify(v)); else mem[k]=v; }catch(e){ mem[k]=v; } }
+  };
+})();
+
+/* ============================
+   Expanded guides (LONG, detailed)
+   - Only a subset shown; pattern repeated -- you can add others similarly.
+   - Each chapter: Key topics, Order/Strategy, Daily drill (concrete), Mistakes, Revision, Advanced topics, IIT traps
+   ============================ */
+const guides = {
+  physics: {
+    physics_and_measurement: { name:"Physics & Measurement", keyTopics:["Units & dimensions","Significant figures","Error analysis","Measurement techniques"], order:["Dimension analysis → error propagation → common unit checks"], drill:["20 dimensional analysis problems"], mistakes:["Ignoring units in transformations"], revision:"Unit-check checklist", advanced:[], traps:[] },
+    kinematics:{ name:"Kinematics (1D & 2D)", keyTopics:["Position, displacement, distance","Average vs instantaneous velocity","Acceleration","Graphs: s-t, v-t","Projectile motion","Relative motion"], order:["Derive basics","Graph practice","Projectile decomposition","Relative motion"], drill:["10 MCQs","8 projectile problems","5 mixed exercises"], mistakes:["Avg speed vs velocity","Slope vs area errors","Sign mistakes"], revision:"1-page formula sheet", advanced:["Parametric trajectories"], traps:["v_avg misuse"] },
+    laws_of_motion:{ name:"Laws of Motion", keyTopics:["Newton's laws","Free-body diagrams","Friction","Constraints"], order:["FBD → friction → connected systems"], drill:["20 FBD problems","10 friction problems"], mistakes:["Normal vs friction confusion"], revision:"FBD checklist", advanced:["Non-inertial frames"], traps:["Hidden constraints"] },
+    work_energy_power:{ name:"Work, Energy & Power", keyTopics:["Work by variable/constant forces","Kinetic & potential energy","Conservative forces","Power"], order:["Work → energy theorem → collisions"], drill:["10 energy problems","6 collision problems"], mistakes:["Energy in inelastic collisions"], revision:"Energy theorem summary", advanced:[], traps:[] },
+    rotational:{ name:"Rotational Motion", keyTopics:["Torque","Moment of inertia","Angular momentum","Rolling without slipping","Parallel axis theorem"], order:["MOI → angular dynamics"], drill:["15 problems"], mistakes:["MOI axis selection"], revision:"MOI table", advanced:[], traps:[] },
+    gravitation:{ name:"Gravitation", keyTopics:["Newton's law of gravitation","Potential & field","Kepler laws","Orbits & escape velocity"], order:["Two-body basics → orbital energy"], drill:["10 gravitation problems"], mistakes:["Confusing potential & field"], revision:"Common formulae", advanced:[], traps:[] },
+    properties_of_solids_liquids:{ name:"Properties of Solids & Liquids", keyTopics:["Elasticity","Stress & strain","Surface tension","Viscosity"], order:["Elasticity → surface tension → viscosity"], drill:["10 elasticity & surface tension problems"], mistakes:["Units confusion"], revision:"Stress/strain summary", advanced:[], traps:[] },
+    fluids:{ name:"Fluids", keyTopics:["Hydrostatics","Buoyancy","Bernoulli & continuity","Viscosity","Poiseuille flow"], order:["Hydrostatics → Bernoulli → viscosity"], drill:["15 problems"], mistakes:["Bernoulli misuse"], revision:"Bernoulli assumptions", advanced:[], traps:[] },
+    thermodynamics:{ name:"Thermodynamics", keyTopics:["Zeroth/First/Second laws","PV diagrams","Entropy","Carnot engine","Heat capacities"], order:["Processes → PV integrals → entropy"], drill:["15 PV problems"], mistakes:["Sign errors"], revision:"PV process checklist", advanced:[], traps:[] },
+    kinetic_theory:{ name:"Kinetic Theory of Gases", keyTopics:["RMS speed","Pressure derivation","Degrees of freedom"], order:["Derive PV relations → applications"], drill:["8 problems"], mistakes:["DOF counting"], revision:"RMS formulas", advanced:[], traps:[] },
+    oscillations_waves:{ name:"Oscillations & Waves", keyTopics:["Simple Harmonic Motion","Damped & forced oscillations","Wave equation","Superposition"], order:["SHM basics → wave properties"], drill:["15 problems"], mistakes:["Phase vs amplitude confusion"], revision:"SHM formulas", advanced:[], traps:[] },
+    optics:{ name:"Optics", keyTopics:["Geometrical optics: lenses/mirrors","Interference","Diffraction","Polarization basics"], order:["Ray tracing → interference → diffraction"], drill:["20 optics problems"], mistakes:["Sign conventions"], revision:"Lens/mirror cheat sheet", advanced:[], traps:[] },
+    electrostatics:{ name:"Electrostatics", keyTopics:["Coulomb's law","Electric field & potential","Gauss's law","Dipoles","Capacitance"], order:["Coulomb → field/potential → Gauss"], drill:["20 problems"], mistakes:["Field vs potential confusion"], revision:"Gaussian surfaces", advanced:[], traps:[] },
+    current_electricity:{ name:"Current Electricity", keyTopics:["Ohm's law","Resistive circuits","Kirchhoff's laws","RC circuits"], order:["Basic circuits → KCL/KVL → transient analysis"], drill:["20 circuit problems"], mistakes:["Polarity errors"], revision:"Circuit reduction tricks", advanced:[], traps:[] },
+    magnetism:{ name:"Magnetism", keyTopics:["Biot–Savart law","Ampere's law","Lorentz force","Magnetic dipoles"], order:["Field calculations → forces on charges/currents"], drill:["12 problems"], mistakes:["Direction mistakes (RHR)"], revision:"RHR practice", advanced:[], traps:[] },
+    emi_and_ac:{ name:"Electromagnetic Induction & AC", keyTopics:["Faraday's law","Lenz's law","AC circuits","RMS & reactance"], order:["Induction basics → AC analysis"], drill:["10 EMI/AC problems"], mistakes:["Sign & direction errors"], revision:"RMS/phase cheat-sheet", advanced:[], traps:[] },
+    modern_physics:{ name:"Modern Physics", keyTopics:["Photoelectric effect","Bohr model","Atomic spectra","X-rays","De Broglie wavelength"], order:["Photoelectric → Bohr → spectra"], drill:["10 problems"], mistakes:["Applying Bohr beyond hydrogen"], revision:"Bohr level notes", advanced:[], traps:[] },
+    electronic_devices:{ name:"Electronic Devices & Communication", keyTopics:["Diode & transistor basics","Logic gates","Modulation basics","Signal properties"], order:["Device characteristics → circuits → communication basics"], drill:["MCQs & small circuits"], mistakes:["Assuming linear region always"], revision:"Device cheat-sheet", advanced:[], traps:[] }
+  },
+  maths: {
+    sets_relations_functions:{ name:"Sets, Relations & Functions", keyTopics:["Set operations","Venn diagrams","Relations properties","Functions: injective/surjective"], order:["NCERT basics → Venn → relations proofs"], drill:["15 Venn & relation problems"], mistakes:["Domain/codomain errors"], revision:"Mapping table", advanced:[], traps:[] },
+    complex_numbers_and_quadratic_equations:{ name:"Complex Numbers & Quadratics", keyTopics:["Argand plane","Polar & exponential form","Roots of unity","Quadratic relations"], order:["Algebraic → polar"], drill:["20 problems"], mistakes:["Treating complex as real"], revision:"Roots of unity", advanced:[], traps:[] },
+    matrices_determinants:{ name:"Matrices & Determinants", keyTopics:["Matrix operations","Inverse & rank","Determinant properties","Cramer's rule"], order:["Basic ops → determinants → inverse"], drill:["15 problems"], mistakes:["Sign errors"], revision:"2x2 & 3x3 templates", advanced:[], traps:[] },
+    permutations_combinations:{ name:"Permutations & Combinations", keyTopics:["nPr/nCr","PIE","Circular permutations","Combinations with repetition"], order:["Counting principles → complementary counting → PIE"], drill:["30 problems"], mistakes:["Overcounting"], revision:"Identities", advanced:[], traps:[] },
+    binomial_theorem:{ name:"Binomial Theorem", keyTopics:["General term extraction","Binomial coefficients","Negative/fractional powers (basics)"], order:["Coefficients → general term → coefficient problems"], drill:["20 problems"], mistakes:["Indexing errors"], revision:"General term templates", advanced:[], traps:[] },
+    sequences_series:{ name:"Sequences & Series", keyTopics:["AP/GP/Harmonic","Convergence tests","Telescoping series","Power series"], order:["Recognise patterns → test convergence"], drill:["30 problems"], mistakes:["Series test misuse"], revision:"Common series list", advanced:[], traps:[] },
+    limit_continuity_differentiability:{ name:"Limits, Continuity & Differentiability", keyTopics:["Standard limits","Continuity criteria","Derivatives & rules","L'Hôpital's rule"], order:["Standard limits → derivatives → L'Hôpital"], drill:["30 problems"], mistakes:["Wrong L'Hôpital use"], revision:"Taylor approx list", advanced:[], traps:[] },
+    differential_equations:{ name:"Differential Equations", keyTopics:["Separable equations","Linear first order","Homogeneous & particular solutions"], order:["Separable → integrating factor → linear DEs"], drill:["20 problems"], mistakes:["IF mistakes"], revision:"IF templates", advanced:[], traps:[] },
+    coordinate_geometry:{ name:"Coordinate Geometry & Conics", keyTopics:["Line, circle, parabola, ellipse, hyperbola","Pair of lines","Locus problems"], order:["Lines → circle → conics"], drill:["25 problems"], mistakes:["Center/radius confusion"], revision:"Conic forms", advanced:[], traps:[] },
+    three_dimensional_geometry:{ name:"3D Geometry", keyTopics:["Lines & planes in 3D","Skew distances","Angles between planes"], order:["Parametric forms → distance formulas"], drill:["15 problems"], mistakes:["Projection sign errors"], revision:"3D formulas", advanced:[], traps:[] },
+    vector_algebra:{ name:"Vector Algebra", keyTopics:["Dot & cross product","Projections","Applications to geometry"], order:["Operations → geometry → applications"], drill:["20 problems"], mistakes:["Cross product sign"], revision:"Vector identities", advanced:[], traps:[] },
+    trigonometry:{ name:"Trigonometry", keyTopics:["Identities","Inverse trig","Equations","Inequalities"], order:["Master identities → solve equations"], drill:["30 problems"], mistakes:["Sign errors"], revision:"Key identities", advanced:[], traps:[] },
+    probability_statistics:{ name:"Probability & Statistics", keyTopics:["Probability axioms","Conditional probability","Bayes theorem","Mean & variance"], order:["Basic rules → conditional & Bayes"], drill:["25 problems"], mistakes:["Independent vs mutually exclusive"], revision:"Bayes templates", advanced:[], traps:[] },
+    algebra:{ name:"Algebra & Polynomials", keyTopics:["Quadratics","Inequalities","Rational functions","Polynomial roots"], order:["Quadratic relations → inequalities"], drill:["30 problems"], mistakes:["Sign mistakes"], revision:"Root relations", advanced:[], traps:[] }
+  },
+  chemistry: {
+    basics:{ name:"Some Basic Concepts", keyTopics:["Mole concept","Molar mass","Stoichiometry","Percentage composition"], order:["Mole conversions → stoichiometry"], drill:["30 stoichiometry problems"], mistakes:["Unit mixups"], revision:"Mole cheat-sheet", advanced:[], traps:[] },
+    atomic_structure:{ name:"Atomic Structure", keyTopics:["Quantum numbers","Electron configuration","Photoelectron spectroscopy"], order:["Quantum numbers → configurations"], drill:["15 problems"], mistakes:["Hund's rule errors"], revision:"Config templates", advanced:[], traps:[] },
+    chemical_bonding:{ name:"Chemical Bonding & Molecular Structure", keyTopics:["Ionic & covalent bonds","VSEPR & hybridization","MO basics"], order:["Bond type → shape → properties"], drill:["20 problems"], mistakes:["Hybridization mis-assignment"], revision:"Bond cheat-sheet", advanced:[], traps:[] },
+    states_of_matter:{ name:"States of Matter", keyTopics:["Gas laws","Real gases","Liquids & solids basics"], order:["Ideal gas → deviations"], drill:["15 gas problems"], mistakes:["Gas law limits"], revision:"Gas templates", advanced:[], traps:[] },
+    thermodynamics:{ name:"Chemical Thermodynamics", keyTopics:["Enthalpy, Entropy, Gibbs free energy","Hess's law"], order:["Hess & ΔG criteria"], drill:["15 problems"], mistakes:["Sign errors"], revision:"Thermo checklist", advanced:[], traps:[] },
+    equilibrium:{ name:"Chemical Equilibrium", keyTopics:["Kc/Kp","ICE tables","Le Chatelier"], order:["ICE → algebra → checks"], drill:["25 problems"], mistakes:["Dropping small-x"], revision:"ICE template", advanced:[], traps:[] },
+    kinetics:{ name:"Chemical Kinetics", keyTopics:["Rate laws","Order & molecularity","Half-life"], order:["Order determination → integrated laws"], drill:["20 problems"], mistakes:["Stoichiometry!=rate law"], revision:"Half-life formulas", advanced:[], traps:[] },
+    electrochemistry:{ name:"Electrochemistry", keyTopics:["Galvanic cells","Nernst equation","Electrode potentials"], order:["Cell notation → EMF calculations"], drill:["10 problems"], mistakes:["Electron accounting"], revision:"Cell cheat-sheet", advanced:[], traps:[] },
+    surface_chemistry:{ name:"Surface Chemistry & Colloids", keyTopics:["Adsorption isotherms","Colloids","Catalysis basics"], order:["Isotherms → colloids"], drill:["MCQs"], mistakes:["Adsorption vs absorption"], revision:"Colloid notes", advanced:[], traps:[] },
+    organic_basic:{ name:"Organic Chemistry Basics", keyTopics:["Nomenclature","Functional groups","Reaction mechanisms basics"], order:["Functional groups → mechanism templates"], drill:["30 mechanism MCQs"], mistakes:["Regiochemistry errors"], revision:"Reaction cheat-sheet", advanced:[], traps:[] },
+    hydrocarbons:{ name:"Hydrocarbons", keyTopics:["Alkanes, Alkenes, Alkynes","Aromaticity"], order:["Nomenclature → reactions"], drill:["20 problems"], mistakes:["Regio/stereo issues"], revision:"Reaction templates", advanced:[], traps:[] },
+    polymers_biomolecules:{ name:"Polymers & Biomolecules", keyTopics:["Polymerization","Proteins, carbs, lipids, nucleic acids basics"], order:["Polymer types → biomolecule functions"], drill:["MCQs"], mistakes:["Monomer vs polymer confusion"], revision:"Biomolecule summaries", advanced:[], traps:[] }
+  }
+};;;
+
+/* Advanced guides and traps fallback maps (smaller objects for catch-all) */
+const advancedGuides = {
+  physics:['Rotational dynamics advanced topics','Nonlinear oscillations overview'],
+  maths:['Series convergence advanced tests','Power series tricks'],
+  chemistry:['Advanced thermodynamics notes','Coordination chemistry tricky parts']
+};
+const iitTraps = {
+  general:["Read the question carefully -- IIT loves hidden constraints","Check domain & physical units always"]
+};
+
+/* ============================
+   App state
+   ============================ */
+const state = {
+  name: SafeStore.get('arj_name', null),
+  subject: SafeStore.get('arj_subject','physics'),
+  chapter: SafeStore.get('arj_chapter', null),
+  planner: SafeStore.get('arj_planner', []),
+  mits: SafeStore.get('arj_mits', {1:'',2:'',3:'', done:[false,false,false], date:null}),
+  daily: SafeStore.get('arj_daily', {}),
+  streak: SafeStore.get('arj_streak', {count:0,last:null})
+};
+function saveAll(){ SafeStore.set('arj_name', state.name); SafeStore.set('arj_subject', state.subject); SafeStore.set('arj_chapter', state.chapter); SafeStore.set('arj_planner', state.planner); SafeStore.set('arj_mits', state.mits); SafeStore.set('arj_daily', state.daily); SafeStore.set('arj_streak', state.streak); }
+
+/* UI refs */
+const welcomeTitle = document.getElementById('welcomeTitle');
+const onboardModal = document.getElementById('onboardModal');
+const onboardName = document.getElementById('onboardName');
+const onboardSave = document.getElementById('onboardSave');
+
+const home = document.getElementById('home');
+const guideScreen = document.getElementById('guideScreen');
+const plannerScreen = document.getElementById('plannerScreen');
+const resetScreen = document.getElementById('resetScreen');
+const weeklyScreen = document.getElementById('weeklyScreen');
+const settingsScreen = document.getElementById('settingsScreen');
+
+const guideTitle = document.getElementById('guideTitle');
+const guideSubtitle = document.getElementById('guideSubtitle');
+const chapterPills = document.getElementById('chapterPills');
+const guideContent = document.getElementById('guideContent');
+
+const plannerDate = document.getElementById('plannerDate');
+plannerDate.textContent = new Date().toLocaleDateString(undefined,{weekday:'short',day:'numeric',month:'short'});
+
+/* ---------- onboarding ---------- */
+function checkOnboard(){
+  if(!state.name){
+    onboardModal.classList.remove('hidden');
+    onboardName.focus();
+  } else {
+    welcomeTitle.textContent = `Welcome, ${state.name} -- choose a section`;
+  }
+}
+onboardSave.addEventListener('click', ()=>{
+  const n = onboardName.value.trim();
+  if(!n) return alert('Type your name');
+  state.name = n;
+  saveAll();
+  onboardModal.classList.add('hidden');
+  welcomeTitle.textContent = `Welcome, ${state.name} -- choose a section`;
+});
+
+/* ---------- navigation ---------- */
+function showScreen(screen){
+  const screens = {home, guideScreen, plannerScreen, resetScreen, weeklyScreen, settingsScreen};
+  Object.keys(screens).forEach(k => screens[k].classList.add('hidden'));
+  if(screen==='home') home.classList.remove('hidden');
+  if(screen==='guide') guideScreen.classList.remove('hidden');
+  if(screen==='planner') plannerScreen.classList.remove('hidden');
+  if(screen==='reset') resetScreen.classList.remove('hidden');
+  if(screen==='weekly') weeklyScreen.classList.remove('hidden');
+  if(screen==='settings') settingsScreen.classList.remove('hidden');
+  // scroll to top
+  const el = screen==='home' ? home : (screen==='guide' ? guideScreen : (screen==='planner' ? plannerScreen : (screen==='reset' ? resetScreen : (screen==='weekly' ? weeklyScreen : settingsScreen))));
+  el.scrollIntoView({behavior:'smooth'});
+}
+
+/* Home tile clicks */
+document.querySelectorAll('.tile').forEach(t => t.addEventListener('click', ()=>{
+  const s = t.dataset.screen;
+  if(s==='guide'){ renderChapters(); showScreen('guide'); }
+  if(s==='planner'){ renderPlannerUI(); showScreen('planner'); }
+  if(s==='reset'){ showScreen('reset'); }
+  if(s==='weekly'){ renderWeekly(); showScreen('weekly'); }
+  if(s==='settings'){ showScreen('settings'); }
+}));
+
+/* header menu */
+document.getElementById('menuBtn').addEventListener('click', ()=> home.scrollIntoView({behavior:'smooth'}));
+document.getElementById('guideBack').addEventListener('click', ()=> showScreen('home'));
+document.getElementById('resetBack').addEventListener('click', ()=> showScreen('home'));
+
+/* subject chips & chapters */
+document.querySelectorAll('#subjectChips .chip').forEach(ch => ch.addEventListener('click', ()=>{
+  state.subject = ch.dataset.subject; saveAll(); renderChapters();
+}));
+
+function renderChapters(){
+  chapterPills.innerHTML = '';
+  const list = guides[state.subject] || {};
+  Object.keys(list).forEach(k=>{
+    const btn = document.createElement('button');
+    btn.className = 'pill';
+    btn.textContent = list[k].name || k;
+    btn.dataset.key = k;
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      loadGuide(k);
+    });
+    chapterPills.appendChild(btn);
+  });
+  // highlight chip
+  document.querySelectorAll('#subjectChips .chip').forEach(c=> c.classList.toggle('active', c.dataset.subject===state.subject));
+}
+
+/* load guide: long detailed content */
+function loadGuide(key){
+  const g = (guides[state.subject] || {})[key];
+  if(!g){
+    guideTitle.textContent = key;
+    guideSubtitle.textContent = 'Custom plan';
+    guideContent.innerHTML = `<div class="guide-card"><div class="guide-section"><h4>Custom plan</h4><ul><li>20 min reading</li><li>20 min examples</li><li>30 min practice</li></ul></div>`;
+    state.chapter = key; saveAll(); return;
+  }
+  guideTitle.textContent = g.name;
+  guideSubtitle.textContent = `Personal plan for "${g.name}" in ${state.subject.toUpperCase()}`;
+  let html = '';
+  html += `<div class="guide-section"><h4>What to study</h4><ul>${g.keyTopics.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+  if(g.order) html += `<div class="guide-section"><h4>Order to study</h4><ul>${g.order.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+  if(g.drill) html += `<div class="guide-section"><h4>Daily drill</h4><ul>${g.drill.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+  if(g.mistakes) html += `<div class="guide-section"><h4>Common mistakes</h4><ul>${g.mistakes.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+  if(g.revision) html += `<div class="guide-section"><h4>Revision & exam strategy</h4><div>${g.revision}</div></div>`;
+  if(g.advanced) html += `<div class="guide-section"><h4>Advanced topics (JEE-Advanced)</h4><ul>${(g.advanced||[]).map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+  const traps = (g.traps || g.traps === undefined ? (g.traps || iitTraps[state.subject] || []) : []);
+  if(traps && traps.length) html += `<div class="guide-section"><h4>IIT favourite traps -- watch out</h4><ul>${traps.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+  guideContent.innerHTML = html;
+  state.chapter = key; saveAll();
+  // pre-fill reset tasks when user opens guide (helps Arjuna Reset)
+  populateSuggestedResetTasks(key);
+}
+
+/* suggested micro-tasks for Arjuna Reset based on chapter or MIT */
+function populateSuggestedResetTasks(chapterKey){
+  const dest = document.getElementById('resetTasks');
+  dest.innerHTML = '';
+  const g = (guides[state.subject] || {})[chapterKey] || null;
+  let tasks = [];
+  if(g && g.drill && g.drill.length){
+    // convert drill entries into short tasks
+    tasks = g.drill.slice(0,3).map((t,i)=>`${i+1}. ${t}`); // first 3 drills
+  } else {
+    // fallback: general micro tasks
+    tasks = ["1. Read the key definitions for 10 minutes","2. Solve 5 quick problems","3. Write 3 mistakes/notes"];
+  }
+  // show as numbered suggestions
+  dest.innerHTML = `<strong>Reset micro-tasks (pick one):</strong><div style="margin-top:6px">${tasks.map(x=>`<div style="margin-bottom:4px">${x}</div>`).join('')}</div>`;
+}
+
+/* ---------- Global search (Enter focuses on planner or loads chapter) ---------- */
+document.getElementById('todayFocusBtn').addEventListener('click', ()=>{ showScreen('planner'); document.getElementById('mit1text').focus(); });
+
+/* ---------- Planner logic ---------- */
+const blocksList = document.getElementById('blocksList');
+function renderPlannerUI(){
+  blocksList.innerHTML = '';
+  if(state.planner.length===0){
+    blocksList.innerHTML = '<div class="small" style="padding:8px;color:var(--muted)">No blocks yet.</div>';
+  } else {
+    state.planner.forEach(b=>{
+      const div = document.createElement('div'); div.className = 'block';
+      div.innerHTML = `<div><div style="font-weight:800">${b.start || 'Any'} - ${b.end || 'Any'}</div><div class="meta">${b.task} • ${b.energy} • ${b.status}</div></div>
+        <div style="display:flex;gap:6px;flex-direction:column">
+          <button data-id="${b.id}" data-act="start" class="btn btn-primary" style="padding:6px 8px">Start</button>
+          <button data-id="${b.id}" data-act="done" class="btn btn-ghost" style="padding:6px 8px">Done</button>
+        </div>`;
+      blocksList.appendChild(div);
+    });
+  }
+  updatePlannerSummary();
+}
+function updatePlannerSummary(){
+  const total = state.planner.length;
+  const done = state.planner.filter(x => x.status === 'done').length;
+const pending = Math.max(0, total - done);
+  document.getElementById('plannerSummary').textContent = `Planned: ${total} • Pending: ${pending} • Done: ${done}`;
+  // sync today's daily counts
+  try{ const k=(new Date()).toISOString().slice(0,10); state.daily[k] = {planned: total, done: done}; SafeStore.set('arj_daily', state.daily);}catch(e){console.warn('sync-daily', e);} 
+
+}
+
+/* add/clear blocks */
+document.getElementById('addBlock').addEventListener('click', ()=>{
+  const s = document.getElementById('bstart').value;
+  const e = document.getElementById('bend').value;
+  const t = document.getElementById('btask').value.trim();
+  const energy = document.getElementById('benergy').value;
+  if(!t) return alert('Enter a task');
+  state.planner.push({id:Date.now().toString(36), start:s, end:e, task:t, energy, status:'pending'});
+  saveAll();
+  try{ recordDaily(); }catch(e){console.warn('recordDaily missing'); }
+  renderPlannerUI();
+  document.getElementById('btask').value='';
+});
+
+/* clear blocks */
+document.getElementById('clearBlocks').addEventListener('click', ()=>{
+  if(confirm('Clear all planner blocks?')){ state.planner = []; saveAll(); renderPlannerUI(); }
+});
+
+/* blocksList button handler (delegated) */
+blocksList.addEventListener('click', function(e){
+  const btn = e.target.closest('button');
+  if(!btn) return;
+  const id = btn.dataset.id; const act = btn.dataset.act;
+  const idx = state.planner.findIndex(x => x.id === id);
+  if(idx < 0) return;
+  if(act === 'start') state.planner[idx].status = 'running';
+  if(act === 'done'){ state.planner[idx].status = 'done'; try{ recordDaily(); }catch(e){console.warn(e);} updateStreak(); }
+  saveAll(); renderPlannerUI(); updatePlannerSummary();
+});
+
+/* Export day (download text file) */
+document.getElementById('exportDay').addEventListener('click', ()=>{
+  let txt = `Arjuna Day Plan -- ${new Date().toLocaleDateString()}\n\n`;
+  state.planner.forEach(b => txt += `${b.start||'Any'}-${b.end||'Any'} | ${b.task} | ${b.status}\n`);
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([txt],{type:'text/plain'})); a.download = 'day_plan.txt'; a.click();
+});
+
+/* ---------- MITs flow (3 cards + "I did it" button) ---------- */
+function loadMitsUI(){
+  document.getElementById('mit1text').value = state.mits[1] || '';
+  document.getElementById('mit2text').value = state.mits[2] || '';
+  document.getElementById('mit3text').value = state.mits[3] || '';
+  // set done class
+  updateMitButtons();
+}
+function updateMitButtons(){
+  ['mit1btn','mit2btn','mit3btn'].forEach((id,i)=>{
+    const btn = document.getElementById(id);
+    if(state.mits.done[i] && state.mits.date === todayKey()){
+      btn.classList.add('done'); btn.textContent = 'I did it ✓';
+    } else {
+      btn.classList.remove('done'); btn.textContent = 'I did it';
+    }
+  });
+  // show win message only if all three done today
+  const win = state.mits.date === todayKey() && state.mits.done.every(x=>x===true) && state.mits[1];
+  document.getElementById('mitWinMsg').style.display = win ? 'block' : 'none';
+}
+document.getElementById('saveMits').addEventListener('click', ()=>{
+  state.mits[1] = document.getElementById('mit1text').value.trim();
+  state.mits[2] = document.getElementById('mit2text').value.trim();
+  state.mits[3] = document.getElementById('mit3text').value.trim();
+  state.mits.done = [false,false,false];
+  state.mits.date = null;
+  saveAll(); loadMitsUI(); alert('MITs saved. Press "I did it" after each completion.');
+});
+document.getElementById('clearMits').addEventListener('click', ()=>{
+  if(confirm('Clear MITs?')){ state.mits = {1:'',2:'',3:'',done:[false,false,false],date:null}; saveAll(); loadMitsUI(); }
+});
+['mit1btn','mit2btn','mit3btn'].forEach((id, idx) => {
+  document.getElementById(id).addEventListener('click', ()=>{
+    if(!state.mits[idx+1]) return alert('Set MIT text first');
+    state.mits.done[idx] = true;
+    state.mits.date = todayKey();
+    saveAll(); updateMitButtons(); recordDaily(); updateStreak();
+    // if all done, celebratory message
+    if(state.mits.done.every(x=>x)) {
+      document.getElementById('mitWinMsg').style.display = 'block';
+    }
+  });
+});
+
+/* daily & streak */
+function todayKey(){ return (new Date()).toISOString().slice(0,10); }
+function recordDaily(){
+  const k = todayKey();
+  state.daily[k] = {planned: state.planner.length, done: state.planner.filter(x=>x.status==='done').length};
+  SafeStore.set('arj_daily', state.daily);
+}
+function updateStreak(){
+  const k = todayKey();
+  const done = state.daily[k] ? state.daily[k].done : 0;
+  if(done > 0){
+    const last = state.streak.last;
+    if(!last) state.streak.count = 1;
+    else {
+      const diff = Math.round((new Date(k) - new Date(last))/86400000);
+      if(diff === 1) state.streak.count = (state.streak.count||0) + 1;
+      else if(diff > 1) state.streak.count = 1;
+    }
+    state.streak.last = k; SafeStore.set('arj_streak', state.streak);
+  }
+}
+
+/* weekly summary */
+function renderWeekly(){
+  const keys = Object.keys(state.daily).sort();
+  if(keys.length === 0) { document.getElementById('weeklySummary').textContent = 'No data yet.'; return; }
+  let html = '';
+  keys.slice(-7).forEach(k=>{ const v = state.daily[k]; const pct = v.planned ? Math.round(v.done/v.planned*100) : 0; html += `${k}: ${pct}% (${v.done}/${v.planned})<br>`; });
+  document.getElementById('weeklySummary').innerHTML = html;
+}
+
+/* ---------- Arjuna Reset: 10-min timer with suggested micro-tasks ---------- */
+let resetTimer = null; let resetRemaining = 600;
+function updateTimerUI(){
+  const disp = document.getElementById('timerDisplay'); const phase = document.getElementById('timerPhase'); const bar = document.getElementById('progressBar');
+  const m = Math.floor(resetRemaining/60), s = resetRemaining%60; disp.textContent = `${m}:${String(s).padStart(2,'0')}`;
+  const elapsed = 600 - resetRemaining;
+  if(elapsed <= 60) phase.textContent = 'Phase 1: Breathe & read definitions (0-1m)';
+  else if(elapsed <= 360) phase.textContent = 'Phase 2: Quick practice (1-6m)';
+  else if(elapsed <= 540) phase.textContent = 'Phase 3: Re-check mistakes (6-9m)';
+  else phase.textContent = 'Phase 4: Summarize & note (9-10m)';
+  if(bar) bar.style.width = Math.min(100, Math.round((elapsed/600)*100)) + '%';
+}
+document.getElementById('startReset').addEventListener('click', ()=>{
+  // set micro-tasks based on resetChapter or current chapter
+  const ref = document.getElementById('resetChapter').value.trim() || state.chapter || state.mits[1] || '';
+  populateResetTasksFor(ref);
+  document.getElementById('timerCard').style.display = 'block'; resetRemaining = 600; updateTimerUI();
+  if(resetTimer) clearInterval(resetTimer);
+  resetTimer = setInterval(()=>{ resetRemaining--; updateTimerUI(); if(resetRemaining <= 0){ clearInterval(resetTimer); resetTimer = null; alert("Time's up -- small win recorded"); recordDaily(); updateStreak(); document.getElementById('timerCard').style.display='none'; } }, 1000);
+});
+document.getElementById('stopReset').addEventListener('click', ()=>{ if(resetTimer) clearInterval(resetTimer); resetTimer = null; document.getElementById('timerCard').style.display = 'none'; });
+document.getElementById('winReset').addEventListener('click', ()=>{ if(resetTimer) clearInterval(resetTimer); resetTimer=null; alert('Nice! Tiny win recorded'); recordDaily(); updateStreak(); document.getElementById('timerCard').style.display='none'; });
+document.getElementById('skipReset').addEventListener('click', ()=>{ if(confirm('Skip this reset?')){ if(resetTimer) clearInterval(resetTimer); resetTimer=null; document.getElementById('timerCard').style.display='none'; } });
+
+function populateResetTasksFor(ref){
+  const dest = document.getElementById('resetTasks');
+  dest.innerHTML = '';
+  // try to find a chapter match
+  let found = null;
+  if(ref){
+    // search through guides for name match
+    Object.keys(guides).forEach(sub=>{
+      if(found) return;
+      Object.keys(guides[sub]).forEach(k=>{
+        const name = guides[sub][k].name.toLowerCase();
+        if(ref.toLowerCase().includes(k) || name.includes(ref.toLowerCase())) { found = guides[sub][k]; }
+      });
+    });
+  }
+  let tasks = [];
+  if(found && found.drill){
+    // convert drill into 3 concise micro-tasks
+    tasks = found.drill.slice(0,3).map((t,i)=>`${i+1}. ${t}`);
+  } else if(ref && ref.length){
+    tasks = [
+      "1. Read definitions/key formulas for 8–10 min",
+      "2. Solve 4–6 short problems (10–12 min)",
+      "3. Note 2 mistakes and rewrite solution (2–3 min)"
+    ];
+  } else {
+    tasks = ["1. Read definitions for 10 min","2. Solve 5 quick problems","3. Write 3 mistakes/notes"];
+  }
+  dest.innerHTML = `<strong>Suggested micro-tasks:</strong><div style="margin-top:6px">${tasks.map(x=>`<div style="margin-bottom:4px">${x}</div>`).join('')}</div>`;
+}
+
+/* ---------- Settings ---------- */
+document.getElementById('useLS').addEventListener('change', ()=> { SafeStore.set('arj_useLS', document.getElementById('useLS').checked); });
+document.getElementById('nightMode').addEventListener('change', (e)=> {
+  if(e.target.checked){ document.body.style.background = '#071028'; document.querySelectorAll('.panel').forEach(p=> p.style.background='#071428'); } else { document.body.style.background=''; document.querySelectorAll('.panel').forEach(p=> p.style.background=''); }
+});
+
+/* ---------- initial render ---------- */
+function init(){
+  // greet user
+  if(state.name){ welcomeTitle.textContent = `Welcome, ${state.name} -- choose a section`; } else { welcomeTitle.textContent = `Welcome -- choose a section`; }
+  // load mits UI
+  loadMitsUI();
+  // render chapters for current subject
+  renderChapters();
+  // render planner, weekly
+  renderPlannerUI(); renderWeekly();
+  // set footer fixed
+  document.getElementById('footer').textContent = 'Built by Shrey';
+  // check first-time onboarding
+  checkOnboard();
+}
+init();
+
+/* debug helper */
+window.dumpState = ()=>{ console.log('STATE', state); alert('State dumped to console'); };
+</script>
+<script>
+/* ======= Small override patch (append-only) =======
+   - Fix Menu -> Home
+   - Re-render planner blocks with clear "I did it" Done button
+   - Delegated click handling (touch-friendly)
+   - Replace/extend guides with full entries for all JEE chapters the user requested
+   Paste this script at the end of the HTML (before 
+<script>
+(function(){
+  // Only run when page loaded
+  function safeMergeGuides(newGuides){
+    window.guides = window.guides || {};
+    Object.keys(newGuides).forEach(sub=>{
+      window.guides[sub] = window.guides[sub] || {};
+      Object.keys(newGuides[sub]).forEach(ch=>{
+        if(!(ch in window.guides[sub])){
+          window.guides[sub][ch] = newGuides[sub][ch];
+        }
+      });
+    });
+    // re-render UI if functions available
+    try{ if(typeof renderChapters === 'function') renderChapters(); }catch(e){}
+    try{ if(typeof renderPlannerUI === 'function') renderPlannerUI(); }catch(e){}
+  }
+
+  // missing guides dataset (concise but comprehensive). Each chapter has basic fields.
+  const newGuides = {
+    "physics": {
+      "measurement_and_units": {
+        "name":"Physics & Measurement",
+        "keyTopics":["Units & dimensions","Significant figures","Error analysis","Measurement techniques"],
+        "order":["Basics of units","Dimensional analysis","Error propagation","Practice PYQs"],
+        "drill":["10 unit conversion problems","5 dimensional analysis questions"],
+        "mistakes":["Forgetting unit conversions","Incorrect significant figures"],
+        "revision":"One page of unit formulas and conversion tricks",
+        "advanced":["Precision vs accuracy topics"],
+        "traps":["Treating dimensions like algebraic quantities"]
+      },
+      "work_energy_power": {
+        "name":"Work, Energy & Power",
+        "keyTopics":["Work-energy theorem","Kinetic & potential energy","Conservative forces","Power"],
+        "order":["Derive work-energy relation","Practice energy conservation problems"],
+        "drill":["15 work/energy problems"],
+        "mistakes":["Sign errors in work","Mixing up power and energy"],
+        "revision":"Memorize work-energy theorem forms",
+        "advanced":["Variable force work calculations"],
+        "traps":["Applying energy methods without checking constraints"]
+      },
+      "rotational_dynamics": {
+        "name":"Rotational Motion",
+        "keyTopics":["Torque","Moment of inertia","Angular momentum","Rotational energy"],
+        "order":["MOI tables→rotational kinematics→dynamics problems"],
+        "drill":["15 rotation problems"],
+        "mistakes":["Using linear equations for rotational problems"],
+        "revision":"Parallel axis theorem notes",
+        "advanced":["Compound bodies MOI"],
+        "traps":["Wrong axis selection"]
+      },
+      "gravitation": {
+        "name":"Gravitation",
+        "keyTopics":["Newton's law of gravitation","Gravitational potential","Orbits and Kepler laws"],
+        "order":["Two body basics→potential energy→orbital mechanics basics"],
+        "drill":["10 gravitation problems"],
+        "mistakes":["Confusing gravitational potential & field"],
+        "revision":"Derive escape velocity and orbital speed formula",
+        "advanced":["Perturbation concepts"],
+        "traps":["Using surface formulas far from surface"]
+      },
+      "properties_of_solids_liquids": {
+        "name":"Properties of Solids & Liquids",
+        "keyTopics":["Elasticity","Surface tension","Viscosity"],
+        "order":["Elastic modulus→surface tension→viscosity problems"],
+        "drill":["10 elasticity & surface tension problems"],
+        "mistakes":["Mixing stress & strain units"],
+        "revision":"Elastic constants table",
+        "advanced":["Non-linear elasticity (concept)"],
+        "traps":["Using Hooke beyond elastic limit"]
+      },
+      "thermodynamics": {
+        "name":"Thermodynamics",
+        "keyTopics":["Laws of thermodynamics","PV diagrams","Entropy","Heat engines"],
+        "order":["Understand processes→apply first law→work in cycles"],
+        "drill":["20 thermo problems"],
+        "mistakes":["Sign errors in heat/work"],
+        "revision":"PV diagram quick-checks",
+        "advanced":["Maxwell relations overview"],
+        "traps":["Confusing heat and internal energy"]
+      },
+      "optics": {
+        "name":"Optics",
+        "keyTopics":["Geometric optics","Interference","Diffraction","Lens formulas"],
+        "order":["Ray optics→wave optics→interference/diffraction"],
+        "drill":["20 optics problems"],
+        "mistakes":["Sign convention errors in lens/mirror formula"],
+        "revision":"Lens maker and interference quick notes",
+        "advanced":["Fresnel/Fraunhofer distinctions"],
+        "traps":["Mixing path difference and phase difference"]
+      },
+      "modern_physics": {
+        "name":"Modern Physics",
+        "keyTopics":["Photoelectric effect","Bohr model","Atomic spectra","Semiconductors"],
+        "order":["Photoelectric→Bohr→quantization basics"],
+        "drill":["10 modern physics problems"],
+        "mistakes":["Extending Bohr model beyond hydrogen"],
+        "revision":"Photoelectric equations & Bohr radius",
+        "advanced":["Intro to quantum concepts"],
+        "traps":["Confusing energy sign conventions"]
+      }
+    },
+    "maths": {
+      "quadratic_equations": {
+        "name":"Quadratic Equations",
+        "keyTopics":["Roots","Discriminant","Relation between roots & coefficients"],
+        "order":["Solution methods→Vieta relations→applications"],
+        "drill":["10 quadratic equation problems"],
+        "mistakes":["Sign errors in coefficient relations"],
+        "revision":"Sum/product of roots cheatsheet",
+        "advanced":["Quadratic forms & transformations"],
+        "traps":["Assuming integer roots"]
+      },
+      "sequences_series": {
+        "name":"Sequences & Series",
+        "keyTopics":["AP/GP","Convergence tests","Telescoping series"],
+        "order":["Recognize pattern→apply sum formulas→tests of convergence"],
+        "drill":["25 series problems"],
+        "mistakes":["Confusing sequence vs series behaviour"],
+        "revision":"Common series formulas",
+        "advanced":["Power series basics"],
+        "traps":["Misapplying ratio/root tests"]
+      },
+      "limits_continuity": {
+        "name":"Limits, Continuity & Differentiability",
+        "keyTopics":["Standard limits","L'Hôpital's rule","Continuity tests"],
+        "order":["Memorize standard limits→algebraic transforms→L'Hôpital"],
+        "drill":["30 limits and differentiability problems"],
+        "mistakes":["Using L'Hôpital incorrectly"],
+        "revision":"Taylor expansion cheat sheet",
+        "advanced":["Epsilon-delta outline"],
+        "traps":["Swapping limits and algebraic operations wrongly"]
+      },
+      "differential_equations": {
+        "name":"Differential Equations",
+        "keyTopics":["Separable","Linear first order","Higher order basics"],
+        "order":["Separable→integrating factor→initial value problems"],
+        "drill":["20 DE problems"],
+        "mistakes":["Algebra errors in IF method"],
+        "revision":"IF derivation notes",
+        "advanced":["Method of undetermined coefficients"],
+        "traps":["Dropping constants of integration"]
+      },
+      "coordinate_geometry": {
+        "name":"Coordinate Geometry",
+        "keyTopics":["Lines","Circles","Conics","Pair of lines"],
+        "order":["Line forms→circle→conics problems"],
+        "drill":["25 geometry problems"],
+        "mistakes":["Wrong slope signs"],
+        "revision":"Standard forms cheatsheet",
+        "advanced":["Matrix methods for conics"],
+        "traps":["Mishandling degenerate conics"]
+      },
+      "vector_algebra": {
+        "name":"Vector Algebra",
+        "keyTopics":["Dot & cross product","Projection","Applications"],
+        "order":["Operations→applications to geometry"],
+        "drill":["20 vector problems"],
+        "mistakes":["Sign errors in cross product"],
+        "revision":"Vector identities list",
+        "advanced":["Using vectors in 3D problems"],
+        "traps":["Treating cross product as commutative"]
+      }
+    },
+    "chemistry": {
+      "atomic_structure": {
+        "name":"Atomic Structure",
+        "keyTopics":["Quantum numbers","Orbitals","Photoelectron spectroscopy"],
+        "order":["Quantum numbers→configurations→spectra"],
+        "drill":["15 atomic problems"],
+        "mistakes":["Hund's rule misapplications"],
+        "revision":"Electronic configurations quick list",
+        "advanced":["Zeeman/Stark qualitative mentions"],
+        "traps":["Ignoring Pauli exclusion for configs"]
+      },
+      "chemical_bonding": {
+        "name":"Chemical Bonding & Molecular Structure",
+        "keyTopics":["Ionic/covalent","VSEPR","Hybridization","MO basics"],
+        "order":["Bond types→shapes→properties→MO basics"],
+        "drill":["20 bonding problems"],
+        "mistakes":["Incorrect hybridization assignments"],
+        "revision":"Hybridization & VSEPR cheatsheet",
+        "advanced":["MO diagrams basics"],
+        "traps":["Relying solely on electronegativity charts"]
+      },
+      "equilibrium": {
+        "name":"Chemical Equilibrium",
+        "keyTopics":["Kc/Kp","ICE tables","Le Chatelier"],
+        "order":["Set up ICE→solve algebraically"],
+        "drill":["25 equilibrium problems"],
+        "mistakes":["Dropping small-x without validation"],
+        "revision":"Kc/Kp relations sheet",
+        "advanced":["Coupled equilibria basics"],
+        "traps":["Mixing Kp/Kc units incorrectly"]
+      },
+      "organic_basic": {
+        "name":"Organic Basics & Purification",
+        "keyTopics":["Functional groups","Purification techniques","Spectroscopy basics"],
+        "order":["Identify groups→purify→characterize"],
+        "drill":["MCQs and short problems"],
+        "mistakes":["Misinterpreting spectra without checks"],
+        "revision":"Functional group list",
+        "advanced":["2D NMR mention (concept)"],
+        "traps":["Assuming single IR peak equals purity"]
+      }
+    }
+  };
+
+  // merge after small delay to allow original scripts to initialize
+  window.addEventListener('load', function(){
+    try{ safeMergeGuides(newGuides); }catch(e){ console.error('merge guides failed', e); }
+  });
+})();
+</script>
+
+
+   <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('service-worker.js').catch(()=>{});}</script></body>)
+
+
+</script>
+
+
+   <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('service-worker.js').catch(()=>{});}</script></body>)
+
+</script>
+<script>
+/* =============================
+   ARJUNA FINAL PATCH (permanent)
+   Fixes:
+   - Done button invisible
+   - Planner block render glitch
+   - Ensures guide rendering triggers correctly
+   ============================= */
+
+/* 1) CSS override so Done button becomes visible on light cards */
+(function(){
+  const css = `
+    .panel .btn-ghost {
+      color: var(--accent2) !important;
+      border-color: #dbeeff !important;
+      background: transparent !important;
+      font-weight: 700;
+    }
+    .panel .btn-ghost.done {
+      color: #0b3d91 !important;
+    }
+  `;
+  const style = document.createElement('style');
+  style.textContent = css;
+  document.head.appendChild(style);
+})();
+
+/* 2) Robust planner renderer -- always shows Start + Done */
+(function(){
+  function escapeHtml(s){
+    return (s+"").replace(/[&<>\"']/g, m => ({
+      '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+    }[m]));
+  }
+
+  function patchedRenderPlanner(){
+    const list = document.getElementById('blocksList');
+    if(!list) return;
+
+    list.innerHTML = '';
+    const arr = window.state?.planner || [];
+
+    if(arr.length === 0){
+      list.innerHTML = '<div class="small" style="padding:8px;color:var(--muted)">No blocks yet.</div>';
+      return;
+    }
+
+    arr.forEach(b=>{
+      const div = document.createElement('div');
+      div.className = 'block';
+
+      const left = document.createElement('div');
+      left.innerHTML = `
+        <div style="font-weight:800">${b.start || 'Any'} - ${b.end || 'Any'}</div>
+        <div class="meta">${escapeHtml(b.task)} • ${b.energy} • ${b.status || 'pending'}</div>
+      `;
+
+      const right = document.createElement('div');
+      right.style.display = 'flex';
+      right.style.flexDirection = 'column';
+      right.style.gap = '6px';
+
+      const startBtn = document.createElement('button');
+      startBtn.className = 'btn btn-primary';
+      startBtn.style.padding = '6px 8px';
+      startBtn.textContent = 'Start';
+      startBtn.dataset.id = b.id;
+      startBtn.dataset.act = 'start';
+
+      const doneBtn = document.createElement('button');
+      doneBtn.className = 'btn btn-ghost';
+      doneBtn.style.padding = '6px 8px';
+      doneBtn.textContent = (b.status === 'done') ? 'I did it ✓' : 'I did it';
+      doneBtn.dataset.id = b.id;
+      doneBtn.dataset.act = 'done';
+
+      right.appendChild(startBtn);
+      right.appendChild(doneBtn);
+
+      div.appendChild(left);
+      div.appendChild(right);
+
+      list.appendChild(div);
+    });
+
+    if(typeof updatePlannerSummary === 'function') updatePlannerSummary();
+  }
+
+  // install patched renderer
+  window.renderPlannerUI = patchedRenderPlanner;
+
+  // re-render now
+  setTimeout(patchedRenderPlanner, 20);
+
+  // delegated click handler
+  const list = document.getElementById('blocksList');
+  if(list){
+    list.addEventListener('click', e=>{
+      const btn = e.target.closest('button');
+      if(!btn) return;
+
+      const id = btn.dataset.id;
+      const act = btn.dataset.act;
+
+      const idx = window.state.planner.findIndex(x=>x.id === id);
+      if(idx < 0) return;
+
+      if(act === 'start'){
+        window.state.planner[idx].status = 'running';
+      }
+      if(act === 'done'){
+        window.state.planner[idx].status = 'done';
+        btn.textContent = 'I did it ✓';
+        btn.classList.add('done');
+        try{ recordDaily(); }catch{}
+        try{ updateStreak(); }catch{}
+      }
+
+      saveAll();
+      window.renderPlannerUI();
+    });
+  }
+})();
+
+/* 3) Ensure guides always load (some versions failed due to merge order) */
+(function(){
+  if(typeof renderChapters === "function"){
+    setTimeout(() => {
+      try { renderChapters(); }catch(e){ console.warn("Guide re-render failed", e); }
+    }, 50);
+  }
+})();
+</script>
+<!-- PASTE THIS BEFORE 
+<script>
+(function(){
+  // Only run when page loaded
+  function safeMergeGuides(newGuides){
+    window.guides = window.guides || {};
+    Object.keys(newGuides).forEach(sub=>{
+      window.guides[sub] = window.guides[sub] || {};
+      Object.keys(newGuides[sub]).forEach(ch=>{
+        if(!(ch in window.guides[sub])){
+          window.guides[sub][ch] = newGuides[sub][ch];
+        }
+      });
+    });
+    // re-render UI if functions available
+    try{ if(typeof renderChapters === 'function') renderChapters(); }catch(e){}
+    try{ if(typeof renderPlannerUI === 'function') renderPlannerUI(); }catch(e){}
+  }
+
+  // missing guides dataset (concise but comprehensive). Each chapter has basic fields.
+  const newGuides = {
+    "physics": {
+      "measurement_and_units": {
+        "name":"Physics & Measurement",
+        "keyTopics":["Units & dimensions","Significant figures","Error analysis","Measurement techniques"],
+        "order":["Basics of units","Dimensional analysis","Error propagation","Practice PYQs"],
+        "drill":["10 unit conversion problems","5 dimensional analysis questions"],
+        "mistakes":["Forgetting unit conversions","Incorrect significant figures"],
+        "revision":"One page of unit formulas and conversion tricks",
+        "advanced":["Precision vs accuracy topics"],
+        "traps":["Treating dimensions like algebraic quantities"]
+      },
+      "work_energy_power": {
+        "name":"Work, Energy & Power",
+        "keyTopics":["Work-energy theorem","Kinetic & potential energy","Conservative forces","Power"],
+        "order":["Derive work-energy relation","Practice energy conservation problems"],
+        "drill":["15 work/energy problems"],
+        "mistakes":["Sign errors in work","Mixing up power and energy"],
+        "revision":"Memorize work-energy theorem forms",
+        "advanced":["Variable force work calculations"],
+        "traps":["Applying energy methods without checking constraints"]
+      },
+      "rotational_dynamics": {
+        "name":"Rotational Motion",
+        "keyTopics":["Torque","Moment of inertia","Angular momentum","Rotational energy"],
+        "order":["MOI tables→rotational kinematics→dynamics problems"],
+        "drill":["15 rotation problems"],
+        "mistakes":["Using linear equations for rotational problems"],
+        "revision":"Parallel axis theorem notes",
+        "advanced":["Compound bodies MOI"],
+        "traps":["Wrong axis selection"]
+      },
+      "gravitation": {
+        "name":"Gravitation",
+        "keyTopics":["Newton's law of gravitation","Gravitational potential","Orbits and Kepler laws"],
+        "order":["Two body basics→potential energy→orbital mechanics basics"],
+        "drill":["10 gravitation problems"],
+        "mistakes":["Confusing gravitational potential & field"],
+        "revision":"Derive escape velocity and orbital speed formula",
+        "advanced":["Perturbation concepts"],
+        "traps":["Using surface formulas far from surface"]
+      },
+      "properties_of_solids_liquids": {
+        "name":"Properties of Solids & Liquids",
+        "keyTopics":["Elasticity","Surface tension","Viscosity"],
+        "order":["Elastic modulus→surface tension→viscosity problems"],
+        "drill":["10 elasticity & surface tension problems"],
+        "mistakes":["Mixing stress & strain units"],
+        "revision":"Elastic constants table",
+        "advanced":["Non-linear elasticity (concept)"],
+        "traps":["Using Hooke beyond elastic limit"]
+      },
+      "thermodynamics": {
+        "name":"Thermodynamics",
+        "keyTopics":["Laws of thermodynamics","PV diagrams","Entropy","Heat engines"],
+        "order":["Understand processes→apply first law→work in cycles"],
+        "drill":["20 thermo problems"],
+        "mistakes":["Sign errors in heat/work"],
+        "revision":"PV diagram quick-checks",
+        "advanced":["Maxwell relations overview"],
+        "traps":["Confusing heat and internal energy"]
+      },
+      "optics": {
+        "name":"Optics",
+        "keyTopics":["Geometric optics","Interference","Diffraction","Lens formulas"],
+        "order":["Ray optics→wave optics→interference/diffraction"],
+        "drill":["20 optics problems"],
+        "mistakes":["Sign convention errors in lens/mirror formula"],
+        "revision":"Lens maker and interference quick notes",
+        "advanced":["Fresnel/Fraunhofer distinctions"],
+        "traps":["Mixing path difference and phase difference"]
+      },
+      "modern_physics": {
+        "name":"Modern Physics",
+        "keyTopics":["Photoelectric effect","Bohr model","Atomic spectra","Semiconductors"],
+        "order":["Photoelectric→Bohr→quantization basics"],
+        "drill":["10 modern physics problems"],
+        "mistakes":["Extending Bohr model beyond hydrogen"],
+        "revision":"Photoelectric equations & Bohr radius",
+        "advanced":["Intro to quantum concepts"],
+        "traps":["Confusing energy sign conventions"]
+      }
+    },
+    "maths": {
+      "quadratic_equations": {
+        "name":"Quadratic Equations",
+        "keyTopics":["Roots","Discriminant","Relation between roots & coefficients"],
+        "order":["Solution methods→Vieta relations→applications"],
+        "drill":["10 quadratic equation problems"],
+        "mistakes":["Sign errors in coefficient relations"],
+        "revision":"Sum/product of roots cheatsheet",
+        "advanced":["Quadratic forms & transformations"],
+        "traps":["Assuming integer roots"]
+      },
+      "sequences_series": {
+        "name":"Sequences & Series",
+        "keyTopics":["AP/GP","Convergence tests","Telescoping series"],
+        "order":["Recognize pattern→apply sum formulas→tests of convergence"],
+        "drill":["25 series problems"],
+        "mistakes":["Confusing sequence vs series behaviour"],
+        "revision":"Common series formulas",
+        "advanced":["Power series basics"],
+        "traps":["Misapplying ratio/root tests"]
+      },
+      "limits_continuity": {
+        "name":"Limits, Continuity & Differentiability",
+        "keyTopics":["Standard limits","L'Hôpital's rule","Continuity tests"],
+        "order":["Memorize standard limits→algebraic transforms→L'Hôpital"],
+        "drill":["30 limits and differentiability problems"],
+        "mistakes":["Using L'Hôpital incorrectly"],
+        "revision":"Taylor expansion cheat sheet",
+        "advanced":["Epsilon-delta outline"],
+        "traps":["Swapping limits and algebraic operations wrongly"]
+      },
+      "differential_equations": {
+        "name":"Differential Equations",
+        "keyTopics":["Separable","Linear first order","Higher order basics"],
+        "order":["Separable→integrating factor→initial value problems"],
+        "drill":["20 DE problems"],
+        "mistakes":["Algebra errors in IF method"],
+        "revision":"IF derivation notes",
+        "advanced":["Method of undetermined coefficients"],
+        "traps":["Dropping constants of integration"]
+      },
+      "coordinate_geometry": {
+        "name":"Coordinate Geometry",
+        "keyTopics":["Lines","Circles","Conics","Pair of lines"],
+        "order":["Line forms→circle→conics problems"],
+        "drill":["25 geometry problems"],
+        "mistakes":["Wrong slope signs"],
+        "revision":"Standard forms cheatsheet",
+        "advanced":["Matrix methods for conics"],
+        "traps":["Mishandling degenerate conics"]
+      },
+      "vector_algebra": {
+        "name":"Vector Algebra",
+        "keyTopics":["Dot & cross product","Projection","Applications"],
+        "order":["Operations→applications to geometry"],
+        "drill":["20 vector problems"],
+        "mistakes":["Sign errors in cross product"],
+        "revision":"Vector identities list",
+        "advanced":["Using vectors in 3D problems"],
+        "traps":["Treating cross product as commutative"]
+      }
+    },
+    "chemistry": {
+      "atomic_structure": {
+        "name":"Atomic Structure",
+        "keyTopics":["Quantum numbers","Orbitals","Photoelectron spectroscopy"],
+        "order":["Quantum numbers→configurations→spectra"],
+        "drill":["15 atomic problems"],
+        "mistakes":["Hund's rule misapplications"],
+        "revision":"Electronic configurations quick list",
+        "advanced":["Zeeman/Stark qualitative mentions"],
+        "traps":["Ignoring Pauli exclusion for configs"]
+      },
+      "chemical_bonding": {
+        "name":"Chemical Bonding & Molecular Structure",
+        "keyTopics":["Ionic/covalent","VSEPR","Hybridization","MO basics"],
+        "order":["Bond types→shapes→properties→MO basics"],
+        "drill":["20 bonding problems"],
+        "mistakes":["Incorrect hybridization assignments"],
+        "revision":"Hybridization & VSEPR cheatsheet",
+        "advanced":["MO diagrams basics"],
+        "traps":["Relying solely on electronegativity charts"]
+      },
+      "equilibrium": {
+        "name":"Chemical Equilibrium",
+        "keyTopics":["Kc/Kp","ICE tables","Le Chatelier"],
+        "order":["Set up ICE→solve algebraically"],
+        "drill":["25 equilibrium problems"],
+        "mistakes":["Dropping small-x without validation"],
+        "revision":"Kc/Kp relations sheet",
+        "advanced":["Coupled equilibria basics"],
+        "traps":["Mixing Kp/Kc units incorrectly"]
+      },
+      "organic_basic": {
+        "name":"Organic Basics & Purification",
+        "keyTopics":["Functional groups","Purification techniques","Spectroscopy basics"],
+        "order":["Identify groups→purify→characterize"],
+        "drill":["MCQs and short problems"],
+        "mistakes":["Misinterpreting spectra without checks"],
+        "revision":"Functional group list",
+        "advanced":["2D NMR mention (concept)"],
+        "traps":["Assuming single IR peak equals purity"]
+      }
+    }
+  };
+
+  // merge after small delay to allow original scripts to initialize
+  window.addEventListener('load', function(){
+    try{ safeMergeGuides(newGuides); }catch(e){ console.error('merge guides failed', e); }
+  });
+})();
+</script>
+
+
+   <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('service-worker.js').catch(()=>{});}</script></body> -->
+<script>
+/*
+  Quick compatibility patch for Arjuna:
+  - Expose local `state`, `guides`, and key functions on window so overrides work.
+  - Re-run the important UI renderers.
+  - Safe to add to the end of your HTML (after all other scripts).
+*/
+
+try {
+  // expose the original local variables if they exist
+  if (typeof state !== 'undefined' && !window.state) {
+    window.state = state;
+    console.log('Patched: window.state attached');
+  }
+  if (typeof guides !== 'undefined' && !window.guides) {
+    window.guides = Object.assign({}, guides);
+    console.log('Patched: window.guides attached');
+  }
+
+  // if the patched code created newGuides, merge it too
+  if (typeof newGuides !== 'undefined' && Object.keys(newGuides).length) {
+    window.guides = window.guides || {};
+    Object.keys(newGuides).forEach(sub => {
+      window.guides[sub] = Object.assign({}, window.guides[sub] || {}, newGuides[sub]);
+    });
+    console.log('Merged newGuides into window.guides');
+  }
+
+  // ensure key functions are available on window for patches that call them
+  if (typeof renderPlannerUI === 'function' && !window.renderPlannerUI) window.renderPlannerUI = renderPlannerUI;
+  if (typeof renderChapters === 'function' && !window.renderChapters) window.renderChapters = renderChapters;
+  if (typeof loadGuide === 'function' && !window.loadGuide) window.loadGuide = loadGuide;
+  if (typeof loadMitsUI === 'function' && !window.loadMitsUI) window.loadMitsUI = loadMitsUI;
+  if (typeof saveAll === 'function' && !window.saveAll) window.saveAll = saveAll;
+
+  // Small safe merge: if window.guides exists but local guides has extra entries, merge them both ways
+  try {
+    if (typeof guides !== 'undefined' && guides && window.guides) {
+      Object.keys(guides).forEach(sub => {
+        window.guides[sub] = Object.assign({}, window.guides[sub] || {}, guides[sub]);
+      });
+    }
+  } catch(e){ /* ignore */ }
+
+  // Re-run important UI updates (small timeout to ensure DOM exists)
+  setTimeout(function(){
+    try { if (typeof window.renderChapters === 'function') window.renderChapters(); } catch(e){ console.warn('renderChapters failed', e); }
+    try { if (typeof window.renderPlannerUI === 'function') window.renderPlannerUI(); } catch(e){ console.warn('renderPlannerUI failed', e); }
+    try { if (typeof window.loadMitsUI === 'function') window.loadMitsUI(); } catch(e){ console.warn('loadMitsUI failed', e); }
+    try { if (typeof renderWeekly === 'function') renderWeekly(); } catch(e){ /* ignore */ }
+    // ensure planner summary visible
+    try { document.getElementById('plannerSummary') && (document.getElementById('plannerSummary').style.display = 'block'); } catch(e){}
+    console.log('Arjuna compatibility patch finished: re-render attempted.');
+  }, 40);
+} catch(err) {
+  console.error('Arjuna patch error', err);
+}
+</script>
+
+<script>
+(function(){
+  // Only run when page loaded
+  function safeMergeGuides(newGuides){
+    window.guides = window.guides || {};
+    Object.keys(newGuides).forEach(sub=>{
+      window.guides[sub] = window.guides[sub] || {};
+      Object.keys(newGuides[sub]).forEach(ch=>{
+        if(!(ch in window.guides[sub])){
+          window.guides[sub][ch] = newGuides[sub][ch];
+        }
+      });
+    });
+    // re-render UI if functions available
+    try{ if(typeof renderChapters === 'function') renderChapters(); }catch(e){}
+    try{ if(typeof renderPlannerUI === 'function') renderPlannerUI(); }catch(e){}
+  }
+
+  // missing guides dataset (concise but comprehensive). Each chapter has basic fields.
+  const newGuides = {
+    "physics": {
+      "measurement_and_units": {
+        "name":"Physics & Measurement",
+        "keyTopics":["Units & dimensions","Significant figures","Error analysis","Measurement techniques"],
+        "order":["Basics of units","Dimensional analysis","Error propagation","Practice PYQs"],
+        "drill":["10 unit conversion problems","5 dimensional analysis questions"],
+        "mistakes":["Forgetting unit conversions","Incorrect significant figures"],
+        "revision":"One page of unit formulas and conversion tricks",
+        "advanced":["Precision vs accuracy topics"],
+        "traps":["Treating dimensions like algebraic quantities"]
+      },
+      "work_energy_power": {
+        "name":"Work, Energy & Power",
+        "keyTopics":["Work-energy theorem","Kinetic & potential energy","Conservative forces","Power"],
+        "order":["Derive work-energy relation","Practice energy conservation problems"],
+        "drill":["15 work/energy problems"],
+        "mistakes":["Sign errors in work","Mixing up power and energy"],
+        "revision":"Memorize work-energy theorem forms",
+        "advanced":["Variable force work calculations"],
+        "traps":["Applying energy methods without checking constraints"]
+      },
+      "rotational_dynamics": {
+        "name":"Rotational Motion",
+        "keyTopics":["Torque","Moment of inertia","Angular momentum","Rotational energy"],
+        "order":["MOI tables→rotational kinematics→dynamics problems"],
+        "drill":["15 rotation problems"],
+        "mistakes":["Using linear equations for rotational problems"],
+        "revision":"Parallel axis theorem notes",
+        "advanced":["Compound bodies MOI"],
+        "traps":["Wrong axis selection"]
+      },
+      "gravitation": {
+        "name":"Gravitation",
+        "keyTopics":["Newton's law of gravitation","Gravitational potential","Orbits and Kepler laws"],
+        "order":["Two body basics→potential energy→orbital mechanics basics"],
+        "drill":["10 gravitation problems"],
+        "mistakes":["Confusing gravitational potential & field"],
+        "revision":"Derive escape velocity and orbital speed formula",
+        "advanced":["Perturbation concepts"],
+        "traps":["Using surface formulas far from surface"]
+      },
+      "properties_of_solids_liquids": {
+        "name":"Properties of Solids & Liquids",
+        "keyTopics":["Elasticity","Surface tension","Viscosity"],
+        "order":["Elastic modulus→surface tension→viscosity problems"],
+        "drill":["10 elasticity & surface tension problems"],
+        "mistakes":["Mixing stress & strain units"],
+        "revision":"Elastic constants table",
+        "advanced":["Non-linear elasticity (concept)"],
+        "traps":["Using Hooke beyond elastic limit"]
+      },
+      "thermodynamics": {
+        "name":"Thermodynamics",
+        "keyTopics":["Laws of thermodynamics","PV diagrams","Entropy","Heat engines"],
+        "order":["Understand processes→apply first law→work in cycles"],
+        "drill":["20 thermo problems"],
+        "mistakes":["Sign errors in heat/work"],
+        "revision":"PV diagram quick-checks",
+        "advanced":["Maxwell relations overview"],
+        "traps":["Confusing heat and internal energy"]
+      },
+      "optics": {
+        "name":"Optics",
+        "keyTopics":["Geometric optics","Interference","Diffraction","Lens formulas"],
+        "order":["Ray optics→wave optics→interference/diffraction"],
+        "drill":["20 optics problems"],
+        "mistakes":["Sign convention errors in lens/mirror formula"],
+        "revision":"Lens maker and interference quick notes",
+        "advanced":["Fresnel/Fraunhofer distinctions"],
+        "traps":["Mixing path difference and phase difference"]
+      },
+      "modern_physics": {
+        "name":"Modern Physics",
+        "keyTopics":["Photoelectric effect","Bohr model","Atomic spectra","Semiconductors"],
+        "order":["Photoelectric→Bohr→quantization basics"],
+        "drill":["10 modern physics problems"],
+        "mistakes":["Extending Bohr model beyond hydrogen"],
+        "revision":"Photoelectric equations & Bohr radius",
+        "advanced":["Intro to quantum concepts"],
+        "traps":["Confusing energy sign conventions"]
+      }
+    },
+    "maths": {
+      "quadratic_equations": {
+        "name":"Quadratic Equations",
+        "keyTopics":["Roots","Discriminant","Relation between roots & coefficients"],
+        "order":["Solution methods→Vieta relations→applications"],
+        "drill":["10 quadratic equation problems"],
+        "mistakes":["Sign errors in coefficient relations"],
+        "revision":"Sum/product of roots cheatsheet",
+        "advanced":["Quadratic forms & transformations"],
+        "traps":["Assuming integer roots"]
+      },
+      "sequences_series": {
+        "name":"Sequences & Series",
+        "keyTopics":["AP/GP","Convergence tests","Telescoping series"],
+        "order":["Recognize pattern→apply sum formulas→tests of convergence"],
+        "drill":["25 series problems"],
+        "mistakes":["Confusing sequence vs series behaviour"],
+        "revision":"Common series formulas",
+        "advanced":["Power series basics"],
+        "traps":["Misapplying ratio/root tests"]
+      },
+      "limits_continuity": {
+        "name":"Limits, Continuity & Differentiability",
+        "keyTopics":["Standard limits","L'Hôpital's rule","Continuity tests"],
+        "order":["Memorize standard limits→algebraic transforms→L'Hôpital"],
+        "drill":["30 limits and differentiability problems"],
+        "mistakes":["Using L'Hôpital incorrectly"],
+        "revision":"Taylor expansion cheat sheet",
+        "advanced":["Epsilon-delta outline"],
+        "traps":["Swapping limits and algebraic operations wrongly"]
+      },
+      "differential_equations": {
+        "name":"Differential Equations",
+        "keyTopics":["Separable","Linear first order","Higher order basics"],
+        "order":["Separable→integrating factor→initial value problems"],
+        "drill":["20 DE problems"],
+        "mistakes":["Algebra errors in IF method"],
+        "revision":"IF derivation notes",
+        "advanced":["Method of undetermined coefficients"],
+        "traps":["Dropping constants of integration"]
+      },
+      "coordinate_geometry": {
+        "name":"Coordinate Geometry",
+        "keyTopics":["Lines","Circles","Conics","Pair of lines"],
+        "order":["Line forms→circle→conics problems"],
+        "drill":["25 geometry problems"],
+        "mistakes":["Wrong slope signs"],
+        "revision":"Standard forms cheatsheet",
+        "advanced":["Matrix methods for conics"],
+        "traps":["Mishandling degenerate conics"]
+      },
+      "vector_algebra": {
+        "name":"Vector Algebra",
+        "keyTopics":["Dot & cross product","Projection","Applications"],
+        "order":["Operations→applications to geometry"],
+        "drill":["20 vector problems"],
+        "mistakes":["Sign errors in cross product"],
+        "revision":"Vector identities list",
+        "advanced":["Using vectors in 3D problems"],
+        "traps":["Treating cross product as commutative"]
+      }
+    },
+    "chemistry": {
+      "atomic_structure": {
+        "name":"Atomic Structure",
+        "keyTopics":["Quantum numbers","Orbitals","Photoelectron spectroscopy"],
+        "order":["Quantum numbers→configurations→spectra"],
+        "drill":["15 atomic problems"],
+        "mistakes":["Hund's rule misapplications"],
+        "revision":"Electronic configurations quick list",
+        "advanced":["Zeeman/Stark qualitative mentions"],
+        "traps":["Ignoring Pauli exclusion for configs"]
+      },
+      "chemical_bonding": {
+        "name":"Chemical Bonding & Molecular Structure",
+        "keyTopics":["Ionic/covalent","VSEPR","Hybridization","MO basics"],
+        "order":["Bond types→shapes→properties→MO basics"],
+        "drill":["20 bonding problems"],
+        "mistakes":["Incorrect hybridization assignments"],
+        "revision":"Hybridization & VSEPR cheatsheet",
+        "advanced":["MO diagrams basics"],
+        "traps":["Relying solely on electronegativity charts"]
+      },
+      "equilibrium": {
+        "name":"Chemical Equilibrium",
+        "keyTopics":["Kc/Kp","ICE tables","Le Chatelier"],
+        "order":["Set up ICE→solve algebraically"],
+        "drill":["25 equilibrium problems"],
+        "mistakes":["Dropping small-x without validation"],
+        "revision":"Kc/Kp relations sheet",
+        "advanced":["Coupled equilibria basics"],
+        "traps":["Mixing Kp/Kc units incorrectly"]
+      },
+      "organic_basic": {
+        "name":"Organic Basics & Purification",
+        "keyTopics":["Functional groups","Purification techniques","Spectroscopy basics"],
+        "order":["Identify groups→purify→characterize"],
+        "drill":["MCQs and short problems"],
+        "mistakes":["Misinterpreting spectra without checks"],
+        "revision":"Functional group list",
+        "advanced":["2D NMR mention (concept)"],
+        "traps":["Assuming single IR peak equals purity"]
+      }
+    }
+  };
+
+  // merge after small delay to allow original scripts to initialize
+  window.addEventListener('load', function(){
+    try{ safeMergeGuides(newGuides); }catch(e){ console.error('merge guides failed', e); }
+  });
+})();
+</script>
+
+
+   <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('service-worker.js').catch(()=>{});}</script>
+<!-- AUTO-INJECTED FIX: planner counts recalculation -->
+<script>
+(function(){
+  function recalcPlannerCounts(){
+    try{
+      // find planner list container(s)
+      var plannedCount = 0;
+      var doneCount = 0;
+      // Query for common planner item selectors used by many simple UIs:
+      var items = document.querySelectorAll('.planner-item, .time-block, .planner-block, .plan-block, .task-block');
+      if(items.length === 0){
+        // fallback: detect elements that look like blocks by data attributes or role
+        items = document.querySelectorAll('[data-planner-item], [data-task-id]');
+      }
+      items.forEach(function(it){
+        // Check for "done" markers: class contains 'done' or 'completed' or button text 'I did it' toggled
+        var cls = (it.className || '').toLowerCase();
+        var text = it.textContent || '';
+        var isDone = false;
+        if(cls.indexOf('done')!==-1 || cls.indexOf('completed')!==-1) isDone = true;
+        // check for child elements that indicate done
+        var doneBtn = it.querySelector('button, .btn, .did-btn, .i-did-it, .i-did-it-btn');
+        if(doneBtn){
+          var dt = (doneBtn.textContent||'').toLowerCase();
+          if(dt.indexOf('i did it')!==-1 || dt.indexOf('done')!==-1 || dt.indexOf('✓')!==-1) isDone = true;
+        }
+        // also check aria-pressed or data-done attribute
+        if(it.hasAttribute('data-done') && (it.getAttribute('data-done')==='true' || it.getAttribute('data-done')==='1')) isDone = true;
+        if(it.getAttribute('aria-checked')==='true' || it.getAttribute('aria-pressed')==='true') isDone = true;
+        if(isDone) doneCount++; else plannedCount++;
+      });
+      // Update UI text nodes if exist
+      var plannedEl = document.querySelector('#planned-count, .planned-count, .planned .count');
+      var doneEl = document.querySelector('#done-count, .done-count, .done .count');
+      if(plannedEl) plannedEl.textContent = plannedCount;
+      if(doneEl) doneEl.textContent = doneCount;
+      // Also update summary line like "Planned: X • Done: Y"
+      var summary = document.querySelector('.planner-summary, #planner-summary, .planned-done-summary');
+      if(summary){
+        summary.textContent = 'Planned: ' + plannedCount + ' • Done: ' + doneCount;
+      } else {
+        // try find footer small text
+        var smalls = document.querySelectorAll('small, .muted, .footer-note');
+        if(smalls && smalls.length){
+          smalls.forEach(function(s){
+            if(s.textContent && s.textContent.toLowerCase().indexOf('planned')!==-1){
+              s.textContent = 'Planned: ' + plannedCount + ' • Done: ' + doneCount;
+            }
+          });
+        }
+      }
+      // Fix % consistency if there's an element showing percentage
+      var perc = document.querySelector('.planner-percent, #planner-percent, .consistency');
+      if(perc){
+        var total = plannedCount + doneCount;
+        var pct = total ? Math.round((doneCount/total)*100) : 0;
+        perc.textContent = pct + '%';
+      }
+    }catch(e){
+      console.error('recalcPlannerCounts error', e);
+    }
+  }
+
+  // Run at DOM ready and also observe mutations (for SPA dynamic updates)
+  function init(){
+    recalcPlannerCounts();
+    // observe planner container for changes
+    var container = document.querySelector('body'); // observe whole body to catch dynamic SPA updates
+    if(container && window.MutationObserver){
+      var obs = new MutationObserver(function(muts){
+        // throttle
+        if(window.__recalcTimeout) clearTimeout(window.__recalcTimeout);
+        window.__recalcTimeout = setTimeout(recalcPlannerCounts, 250);
+      });
+      obs.observe(container, {childList:true, subtree:true, attributes:true, characterData:true});
+      // run once more after some time
+      setTimeout(recalcPlannerCounts, 400);
+    }
+    // also expose function for manual trigger
+    window.recalcPlannerCounts = recalcPlannerCounts;
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+</script>
+<script>
+/* ==== FIX MENU → ALWAYS GO TO HOME SCREEN ==== */
+(function(){
+  const menuBtn = document.getElementById("menuBtn");
+  if(!menuBtn) return;
+
+  menuBtn.addEventListener("click", () => {
+    // Hide all screens
+    ["guideScreen","plannerScreen","resetScreen","weeklyScreen","settingsScreen"]
+      .forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.classList.add("hidden");
+      });
+
+    // Show home
+    const home = document.getElementById("home");
+    home.classList.remove("hidden");
+    home.scrollIntoView({behavior:"smooth"});
+  });
+})();
+</script>
+</body>
+</html>
